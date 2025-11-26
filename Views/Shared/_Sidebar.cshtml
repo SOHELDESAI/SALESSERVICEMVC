@@ -1,0 +1,443 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attractive Sidebar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+        }
+
+        .left-sidebar {
+            width: 270px;
+            height: 100vh;
+            background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.08);
+            border-right: 1px solid #e2e8f0;
+        }
+
+            .left-sidebar::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            .left-sidebar::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.02);
+            }
+
+            .left-sidebar::-webkit-scrollbar-thumb {
+                background: rgba(0, 0, 0, 0.1);
+                border-radius: 10px;
+            }
+
+        .brand-logo {
+            padding: 25px 20px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-img {
+            font-size: 24px;
+            font-weight: 700;
+            color: #3b82f6;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        .sidebar-nav {
+            padding: 10px 0;
+        }
+
+        #sidebarnav {
+            list-style: none;
+        }
+
+        .nav-small-cap {
+            padding: 15px 20px 8px;
+            color: #94a3b8;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+            /* .nav-small-cap:first-child {
+                padding-top: 10px;
+            } */
+
+            .nav-small-cap i {
+                font-size: 4px;
+            }
+
+        .sidebar-item {
+            margin: 2px 12px;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            color: #475569;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .sidebar-link::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                width: 3px;
+                background: linear-gradient(180deg, #3b82f6 0%, #2563eb 100%);
+                transform: scaleY(0);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar-link:hover {
+                background: rgba(59, 130, 246, 0.1);
+                color: #1e40af;
+                transform: translateX(4px);
+            }
+
+                .sidebar-link:hover::before {
+                    transform: scaleY(1);
+                }
+
+            .sidebar-link.active {
+                background: linear-gradient(90deg, rgba(59, 130, 246, 0.15) 0%, rgba(59, 130, 246, 0.05) 100%);
+                color: #1e40af;
+                font-weight: 500;
+            }
+
+                .sidebar-link.active::before {
+                    transform: scaleY(1);
+                }
+
+            .sidebar-link i {
+                font-size: 20px;
+                margin-right: 12px;
+                width: 24px;
+                text-align: center;
+            }
+
+            .sidebar-link.has-arrow::after {
+                content: '\f107';
+                font-family: 'Font Awesome 6 Free';
+                font-weight: 900;
+                margin-left: auto;
+                transition: transform 0.3s ease;
+                font-size: 14px;
+            }
+
+            .sidebar-link.has-arrow[aria-expanded="true"]::after {
+                transform: rotate(-180deg);
+            }
+
+        .sidebar-item.selected > .sidebar-link.has-arrow {
+            background: rgba(59, 130, 246, 0.1);
+            color: #1e40af;
+        }
+
+        /* Enhanced Submenu Styles */
+        .first-level {
+            list-style: none;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-radius: 10px;
+            margin: 6px 0 6px 12px;
+            border: 1px solid #e2e8f0;
+        }
+
+            .first-level.in {
+                max-height: 500px;
+                padding: 8px 0;
+            }
+
+            .first-level .sidebar-item {
+                margin: 2px 8px;
+            }
+
+            .first-level .sidebar-link {
+                padding: 10px 16px;
+                font-size: 14px;
+                color: #64748b;
+                border-radius: 8px;
+                position: relative;
+                padding-left: 20px;
+            }
+
+                .first-level .sidebar-link:hover {
+                    background: rgba(59, 130, 246, 0.15);
+                    color: #1e40af;
+                    transform: translateX(6px);
+                    padding-left: 24px;
+                }
+
+                .first-level .sidebar-link.active {
+                    background: linear-gradient(90deg, rgba(59, 130, 246, 0.25) 0%, rgba(59, 130, 246, 0.1) 100%);
+                    color: #3b82f6;
+                    font-weight: 500;
+                }
+
+                    .first-level .sidebar-link.active::before {
+                        background: #3b82f6;
+                        box-shadow: 0 0 12px rgba(59, 130, 246, 0.6);
+                    }
+
+        /* Icon animations */
+        .sidebar-link i {
+            transition: all 0.3s ease;
+        }
+
+        .sidebar-link:hover i {
+            transform: scale(1.1);
+        }
+
+        /* Demo content area */
+        .main-content {
+            margin-left: 270px;
+            padding: 30px;
+        }
+
+        .demo-card {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body>
+    <aside class="left-sidebar">
+        <div>
+            <div class="brand-logo">
+                <a href="#" class="logo-img">
+                    <i class="fas fa-cube"></i> Nasan
+                </a>
+            </div>
+            <nav class="sidebar-nav">
+                <ul id="sidebarnav">
+                    <!-- Home Section -->
+                   
+                    <li class="sidebar-item">
+                        <a class="sidebar-link active" href="#" aria-expanded="false">
+                            <i class="fas fa-home"></i>
+                            <span class="hide-menu">Dashboard</span>
+                        </a>
+                    </li>
+
+                    <!-- Master Section -->
+              
+                    <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+                            <i class="fas fa-database"></i>
+                            <span class="hide-menu">Master Data</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Customer Master</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Courier Master</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Product Master</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Supplier Master</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Category Master</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Transaction Section -->
+             
+                    <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+                            <i class="fas fa-receipt"></i>
+                            <span class="hide-menu">Transactions</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Sales Order</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Purchase Order</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Invoice</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Payment</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Shipment</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Report Section -->
+          
+                    <li class="sidebar-item">
+                        <a class="sidebar-link has-arrow" href="#" aria-expanded="false">
+                            <i class="fas fa-chart-bar"></i>
+                            <span class="hide-menu">Reports</span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level">
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Sales Report</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Purchase Report</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Inventory Report</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Customer Report</span>
+                                </a>
+                            </li>
+                            <li class="sidebar-item">
+                                <a href="#" class="sidebar-link">
+                                    <span class="hide-menu">Financial Report</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <!-- Settings Section -->
+                    <li class="nav-small-cap">
+                        <i class="fas fa-circle"></i>
+                        <span class="hide-menu">Settings</span>
+                    </li>
+                    <li class="sidebar-item">
+                        <a class="sidebar-link" href="#" aria-expanded="false">
+                            <i class="fas fa-cog"></i>
+                            <span class="hide-menu">Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </aside>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const hasArrowLinks = document.querySelectorAll('.sidebar-link.has-arrow');
+
+            hasArrowLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+
+                    const parentLi = this.closest('.sidebar-item');
+                    const submenu = parentLi.querySelector('.first-level');
+                    const isExpanded = this.getAttribute('aria-expanded') === 'true';
+
+                    // Close all other open menus
+                    document.querySelectorAll('.first-level.in').forEach(openMenu => {
+                        if (openMenu !== submenu) {
+                            openMenu.classList.remove('in');
+                            openMenu.classList.add('collapse');
+
+                            const openParent = openMenu.closest('.sidebar-item');
+                            if (openParent) {
+                                const openLink = openParent.querySelector('.sidebar-link.has-arrow');
+                                if (openLink) openLink.setAttribute('aria-expanded', 'false');
+                                openParent.classList.remove('selected');
+                            }
+                        }
+                    });
+
+                    // Toggle current menu
+                    if (isExpanded) {
+                        this.setAttribute('aria-expanded', 'false');
+                        submenu.classList.remove('in');
+                        submenu.classList.add('collapse');
+                        parentLi.classList.remove('selected');
+                    } else {
+                        this.setAttribute('aria-expanded', 'true');
+                        submenu.classList.remove('collapse');
+                        submenu.classList.add('in');
+                        parentLi.classList.add('selected');
+                    }
+                });
+            });
+
+            // Active menu marking
+            const currentPath = window.location.pathname;
+            const sidebarLinks = document.querySelectorAll('.sidebar-link');
+
+            sidebarLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href && currentPath.includes(href)) {
+                    link.classList.add('active');
+
+                    const parentSubmenu = link.closest('.first-level');
+                    if (parentSubmenu) {
+                        parentSubmenu.classList.remove('collapse');
+                        parentSubmenu.classList.add('in');
+
+                        const parentLink = parentSubmenu.previousElementSibling;
+                        if (parentLink) {
+                            parentLink.setAttribute('aria-expanded', 'true');
+                            parentLink.closest('.sidebar-item').classList.add('selected');
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

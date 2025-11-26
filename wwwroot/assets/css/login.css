@@ -1,0 +1,588 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 480px;
+    animation: slideUp 0.6s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card {
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.login-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 50px 40px;
+    text-align: center;
+    color: white;
+    position: relative;
+}
+
+    .login-header::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="rgba(255,255,255,0.1)"/></svg>');
+        opacity: 0.1;
+    }
+
+.logo-circle {
+    width: 80px;
+    height: 80px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+    .logo-circle i {
+        font-size: 40px;
+        color: #667eea;
+    }
+
+.login-header h2 {
+    margin: 0;
+    font-size: 32px;
+    font-weight: 700;
+    position: relative;
+}
+
+.login-header p {
+    margin: 10px 0 0 0;
+    opacity: 0.95;
+    font-size: 16px;
+    position: relative;
+}
+
+.login-body {
+    padding: 45px 40px;
+}
+
+.form-group {
+    margin-bottom: 28px;
+}
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.input-wrapper {
+    position: relative;
+}
+
+.input-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 20px;
+    z-index: 1;
+}
+
+.form-control {
+    width: 100%;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 16px 18px 16px 52px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+}
+
+    .form-control:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+.radio-card {
+    flex: 1;
+    position: relative;
+}
+
+    .radio-card input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+    }
+
+.radio-label {
+    display: block;
+    padding: 16px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    font-weight: 600;
+}
+
+.radio-card input[type="radio"]:checked + .radio-label {
+    border-color: #667eea;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+.form-select {
+    width: 100%;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    background: #f8f9fa;
+    cursor: pointer;
+}
+
+    .form-select:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+    }
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+    .remember-me input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+
+.btn-login {
+    width: 100%;
+    padding: 18px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    font-size: 17px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+}
+
+    .btn-login:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+    }
+
+    .btn-login:active {
+        transform: translateY(-1px);
+    }
+
+.alert {
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    75% {
+        transform: translateX(10px);
+    }
+}
+
+.alert-danger {
+    background: #fee;
+    border: 2px solid #fcc;
+    color: #c33;
+}
+
+.text-danger {
+    color: #dc3545;
+    font-size: 13px;
+    margin-top: 6px;
+    display: block;
+}
+
+.validation-summary {
+    background: #fee;
+    border: 2px solid #fcc;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 25px;
+}
+
+    .validation-summary ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        color: #c33;
+    }
+
+    .validation-summary li {
+        padding: 4px 0;
+    }
+
+/* ============================================
+   RESPONSIVE MEDIA QUERIES
+   ============================================ */
+
+/* Tablets (Portrait) */
+@media (max-width: 768px) {
+    body {
+        padding: 15px;
+    }
+
+    .login-container {
+        max-width: 420px;
+    }
+
+    .login-header {
+        padding: 40px 30px;
+    }
+
+        .login-header h2 {
+            font-size: 28px;
+        }
+
+        .login-header p {
+            font-size: 15px;
+        }
+
+    .logo-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+        .logo-circle i {
+            font-size: 35px;
+        }
+
+    .login-body {
+        padding: 35px 30px;
+    }
+
+    .form-group {
+        margin-bottom: 24px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .form-control {
+        padding: 14px 16px 14px 48px;
+        font-size: 14px;
+    }
+
+    .btn-login {
+        padding: 16px;
+        font-size: 16px;
+    }
+}
+
+/* Mobile (Landscape) */
+@media (max-width: 576px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .login-container {
+        max-width: 100%;
+    }
+
+    .login-card {
+        border-radius: 20px;
+    }
+
+    .login-header {
+        padding: 35px 25px;
+    }
+
+        .login-header h2 {
+            font-size: 26px;
+        }
+
+        .login-header p {
+            font-size: 14px;
+        }
+
+    .logo-circle {
+        width: 65px;
+        height: 65px;
+        margin-bottom: 15px;
+    }
+
+        .logo-circle i {
+            font-size: 32px;
+        }
+
+    .login-body {
+        padding: 30px 25px;
+    }
+
+    .form-group {
+        margin-bottom: 22px;
+    }
+
+    .form-label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+
+    .input-icon {
+        left: 15px;
+        font-size: 18px;
+    }
+
+    .form-control {
+        padding: 13px 15px 13px 45px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .radio-group {
+        gap: 12px;
+    }
+
+    .radio-label {
+        padding: 14px 10px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .form-select {
+        padding: 13px 15px;
+        font-size: 14px;
+        border-radius: 10px;
+    }
+
+    .remember-me {
+        margin-bottom: 20px;
+        font-size: 14px;
+    }
+
+        .remember-me input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+    .btn-login {
+        padding: 15px;
+        font-size: 15px;
+        border-radius: 10px;
+        letter-spacing: 0.5px;
+    }
+
+    .validation-summary {
+        padding: 14px 18px;
+        font-size: 14px;
+    }
+
+        .validation-summary li {
+            padding: 3px 0;
+        }
+}
+
+/* Small Mobile (Portrait) */
+@media (max-width: 375px) {
+    body {
+        padding: 8px;
+        padding-top: 15px;
+    }
+
+    .login-header {
+        padding: 30px 20px;
+    }
+
+        .login-header h2 {
+            font-size: 24px;
+        }
+
+        .login-header p {
+            font-size: 13px;
+        }
+
+    .logo-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+        .logo-circle i {
+            font-size: 28px;
+        }
+
+    .login-body {
+        padding: 25px 20px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .form-label {
+        font-size: 11px;
+    }
+
+    .form-control {
+        padding: 12px 14px 12px 42px;
+        font-size: 13px;
+    }
+
+    .input-icon {
+        left: 14px;
+        font-size: 16px;
+    }
+
+    .radio-group {
+        gap: 10px;
+    }
+
+    .radio-label {
+        padding: 12px 8px;
+        font-size: 13px;
+    }
+
+    .form-select {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    .btn-login {
+        padding: 14px;
+        font-size: 14px;
+    }
+}
+
+/* Very Small Devices */
+@media (max-width: 320px) {
+    .login-header h2 {
+        font-size: 22px;
+    }
+
+    .logo-circle {
+        width: 55px;
+        height: 55px;
+    }
+
+        .logo-circle i {
+            font-size: 26px;
+        }
+
+    .login-body {
+        padding: 20px 15px;
+    }
+
+    .form-label {
+        font-size: 10px;
+    }
+
+    .radio-label {
+        padding: 10px 6px;
+        font-size: 12px;
+    }
+}
+
+/* Landscape orientation for mobile */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        align-items: flex-start;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .login-header {
+        padding: 25px 30px;
+    }
+
+    .logo-circle {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 10px;
+    }
+
+        .logo-circle i {
+            font-size: 24px;
+        }
+
+    .login-header h2 {
+        font-size: 22px;
+    }
+
+    .login-header p {
+        font-size: 13px;
+    }
+
+    .login-body {
+        padding: 20px 30px;
+    }
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+}

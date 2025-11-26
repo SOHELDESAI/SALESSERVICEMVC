@@ -1,0 +1,113 @@
+﻿@model SalesService.Models.LoginViewModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - Sales Service</title>
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="~/assets/css/styles.min.css" />
+    <link rel="stylesheet" href="~/assets/css/login.css" />   
+
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-circle">
+                    <i class="ti ti-shopping-cart"></i>
+                </div>
+                <h2>Sales Service</h2>
+                <p>Welcome back! Please login to continue</p>
+            </div>
+
+            <div class="login-body">
+                <form asp-action="Login" asp-controller="Account" method="post">
+
+                    @if (ViewData.ModelState.ErrorCount > 0 && !ViewData.ModelState.IsValid)
+                    {
+                        <div class="validation-summary">
+                            <ul>
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <li>⚠️ @error.ErrorMessage</li>
+                                }
+                            </ul>
+                        </div>
+                    }
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label asp-for="Username" class="form-label">Username</label>
+                        <div class="input-wrapper">
+                            <i class="ti ti-user input-icon"></i>
+                            <input asp-for="Username" class="form-control" placeholder="Enter your username" autocomplete="username" />
+                        </div>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label asp-for="Password" class="form-label">Password</label>
+                        <div class="input-wrapper">
+                            <i class="ti ti-lock input-icon"></i>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" autocomplete="current-password" />
+                        </div>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+
+                    <!-- Company Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Select Company</label>
+                        <div class="radio-group">
+                            <div class="radio-card">
+                                <input type="radio" asp-for="Company" value="Nasan" id="companyNasan" checked />
+                                <label for="companyNasan" class="radio-label">
+                                    🏢 Nasan
+                                </label>
+                            </div>
+                            <div class="radio-card">
+                                <input type="radio" asp-for="Company" value="Asaan" id="companyAsaan" />
+                                <label for="companyAsaan" class="radio-label">
+                                    🏭 Asaan
+                                </label>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Company" class="text-danger"></span>
+                    </div>
+
+                    <!-- Database Selection -->
+                    <div class="form-group">
+                        <label asp-for="Database" class="form-label">Select Database</label>
+                        <select asp-for="Database" class="form-select">
+                            <option value="">-- Choose Database --</option>
+                            <option value="Sales">💼 Sales</option>
+                            <option value="Training">📚 Training</option>
+                        </select>
+                        <span asp-validation-for="Database" class="text-danger"></span>
+                    </div>
+
+                    <!-- Remember Me -->
+                    <div class="remember-me">
+                        <input type="checkbox" asp-for="RememberMe" id="rememberMe" />
+                        <label for="rememberMe">Remember me on this device</label>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-login">
+                        🔐 Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    @await Html.PartialAsync("_ValidationScriptsPartial")
+</body>
+</html>
